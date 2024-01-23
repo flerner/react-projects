@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 // eslint-disable-next-line space-before-function-paren
 export function App() {
-  const [fact, setFact] = useState('hi')
+  const [fact, setFact] = useState()
   const [img, setImg] = useState()
   useEffect(() => {
     fetch('https://catfact.ninja/fact')
