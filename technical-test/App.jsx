@@ -9,16 +9,20 @@ export function App() {
       .then((res) => res.json())
       .then((data) => {
         const { fact } = data
-        const firstWord = fact.split(' ')[0]
-        setFact(fact)
 
-        fetch(`https://cataas.com/cat/says/${firstWord}?json=true`)
-          .then((res) => res.json())
-          .then((response) => {
-            setImg(`https://cataas.com/cat/${response._id}/says/${firstWord}`)
-          })
+        setFact(fact)
       })
   }, [])
+
+  useEffect(() => {
+    if (!fact) return
+    const firstWord = fact.split(' ')[0]
+    fetch(`https://cataas.com/cat/says/${firstWord}?json=true`)
+      .then((res) => res.json())
+      .then((response) => {
+        setImg(`https://cataas.com/cat/${response._id}/says/${firstWord}`)
+      })
+  }, [fact])
   return (
     <main>
       <h1>App de gatitos</h1>
