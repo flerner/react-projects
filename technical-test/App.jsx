@@ -1,35 +1,18 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import getRandomFact from './services/facts.js'
-
-function useCatImage({ fact }) {
-  const [img, setImg] = useState()
-  useEffect(() => {
-    if (!fact) return
-    const firstWord = fact.split(' ')[0]
-    fetch(`https://cataas.com/cat/says/${firstWord}?json=true`)
-      .then((res) => res.json())
-      .then((response) => {
-        console.log(`https://cataas.com/cat/${response._id}/says/${firstWord}`)
-        setImg(`https://cataas.com/cat/${response._id}/says/${firstWord}`)
-      })
-  }, [fact])
-  return { img }
-}
-
+import useCatFact from './hooks/useCatFacts.js'
+import useCatImage from './hooks/useCatImage.js'
 // eslint-disable-next-line space-before-function-paren
-export function App() {
-  const [fact, setFact] = useState()
-  const { img } = useCatImage({ fact })
 
+export function App() {
+  const { fact, getAndUpdateFact } = useCatFact()
+  const { img } = useCatImage({ fact })
   useEffect(async () => {
-    const newFact = await getRandomFact()
-    setFact(newFact)
+    getAndUpdateFact()
   }, [])
 
   async function handleClick() {
-    const newFact = await getRandomFact()
-    setFact(newFact)
+    getAndUpdateFact()
   }
   return (
     <main>
