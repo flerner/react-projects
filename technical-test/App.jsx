@@ -7,11 +7,8 @@ import useCatImage from './hooks/useCatImage.js'
 export function App() {
   const { fact, getAndUpdateFact } = useCatFact()
   const { img } = useCatImage({ fact })
-  useEffect(async () => {
-    getAndUpdateFact()
-  }, [])
 
-  async function handleClick() {
+  function handleClick() {
     getAndUpdateFact()
   }
   return (
