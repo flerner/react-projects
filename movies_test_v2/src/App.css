@@ -3,16 +3,25 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 100%;
 }
 main {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 form {
   align-items: center;
   display: flex;
   justify-content: center;
 }
-img {
-  margin: 20px;
+
+.movies {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+:root {
+  width: 100%;
 }

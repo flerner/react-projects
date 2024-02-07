@@ -1,14 +1,22 @@
 import './App.css'
 import getMovies from './services/getMovies.js'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import Movies from './components/Movies.jsx'
 function App() {
-  const [userInput, setUserInput] = useState('')
+  const userInput = useRef()
   const [movies, setMovies] = useState([])
   const emptyResponse = 'No movies available'
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const movies = await getMovies(userInput)
+    const movies = await getMovies(userInput.current.value)
     setMovies(movies)
+
+    /*
+      const fields = new window.FormData(e.target)
+      const query = fields.get('query')
+      //input catched in query const now
+      //same behaviour
+    */
   }
 
   return (
@@ -18,29 +26,16 @@ function App() {
 
         <form className='form' onSubmit={handleSubmit}>
           <input
+            name='query'
             type='text'
-            value={userInput}
+            ref={userInput}
             placeholder='Star Wars, Avengers, Batman...'
-            onChange={(e) => {
-              setUserInput(e.target.value)
-            }}
           />
           <button type='submit'>Find</button>
         </form>
       </header>
       <main>
-        {movies ? (
-          <ul>
-            {movies.map((m) => (
-              <li key={m.imdbID}>
-                <h3>Movie: {m.Title}</h3>
-                <img src={m.Poster}></img>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          { emptyResponse }
-        )}
+        {movies ? <Movies movies={movies}></Movies> : { emptyResponse }}
       </main>
     </div>
   )
