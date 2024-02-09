@@ -1,9 +1,10 @@
 import Filters from './Filters.jsx'
-function Header({ changeFilters }) {
+
+function Header() {
   return (
     <header>
       <h1>Shopping cart</h1>
-      <Filters onChange={changeFilters} />
+      <Filters />
     </header>
   )
 }
