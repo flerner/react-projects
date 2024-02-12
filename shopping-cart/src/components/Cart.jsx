@@ -1,8 +1,11 @@
 import { CartIcon, ClearCartIcon, RemoveFromCartIcon } from './Icons.jsx'
-import { useId } from 'react'
+import { useContext, useId } from 'react'
 import './Cart.css'
+import { CartContext } from '../context/cart.jsx'
 function Cart() {
   const cartCheckboxId = useId()
+  const { cart } = useContext(CartContext)
+  console.log(cart)
   return (
     <>
       <label className='cart-button' htmlFor={cartCheckboxId}>
@@ -24,6 +27,15 @@ function Cart() {
               <button>+</button>
             </footer>
           </li>
+          {cart.map((p) => (
+            <li key={p.id}>
+              {' '}
+              <img src={p.thumbnail}></img>
+              <div>
+                <strong>{p.title}</strong>
+              </div>
+            </li>
+          ))}
         </ul>
         <button>
           <ClearCartIcon />

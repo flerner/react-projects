@@ -6,11 +6,14 @@ export function CartProvider({ children }) {
   const [cart, setCart] = useState([])
 
   const addToCart = (product) => {
-    console.log(cart)
     setCart([...cart, product])
   }
   const clearCart = () => {
     setCart([])
+  }
+  const removeFromCart = (p) => {
+    const newCart = cart.filter((pr) => p.id !== pr.id)
+    setCart(newCart)
   }
   return (
     <CartContext.Provider
@@ -18,6 +21,7 @@ export function CartProvider({ children }) {
         cart,
         addToCart,
         clearCart,
+        removeFromCart,
       }}
     >
       {children}

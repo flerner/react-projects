@@ -1,8 +1,11 @@
+import { useContext } from 'react'
 import useFilters from '../hooks/useFilters'
 import './Footer.css'
+import { CartContext } from '../context/cart'
 
 function Footer() {
   const { filters } = useFilters()
+  const { cart } = useContext(CartContext)
   return (
     <footer className='footer'>
       <h4>
@@ -14,6 +17,7 @@ function Footer() {
         Active filters: category: {filters.category} - minPrice:{' '}
         {filters.minPrice}
       </p>
+      {JSON.stringify(cart, null, 2)}
     </footer>
   )
 }
