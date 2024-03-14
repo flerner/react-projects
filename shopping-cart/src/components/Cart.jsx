@@ -14,19 +14,6 @@ function Cart() {
       <input id={cartCheckboxId} type='checkbox' hidden />
       <aside className='cart'>
         <ul>
-          <li>
-            <img
-              src='https://i.dummyjson.com/data/products/6/thumbnail.png'
-              alt='Macbook'
-            />
-            <div>
-              <strong>Macbook</strong> - $1999
-            </div>
-            <footer>
-              <small>Qty: 1</small>
-              <button>+</button>
-            </footer>
-          </li>
           {cart.map((p) => (
             <li key={p.id}>
               {' '}
