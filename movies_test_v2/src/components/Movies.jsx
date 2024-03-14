@@ -1,3 +1,4 @@
+import "./Movies.css"
 function ListOfMovies({ movies }) {
   if (movies) {
     console.log(movies)
